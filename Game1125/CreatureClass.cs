@@ -34,8 +34,6 @@ namespace Game1125
             int index = 1;
             foreach (CreatureAction action in Actions)
                 Console.WriteLine($"{index++}) {action.Title}");
-            
-
         }
     }
 }

@@ -70,8 +70,6 @@ namespace Game1125
                 enemyIsDead = !Enemies.Any(s=>!s.IsDead);
             }
             while (!Player.IsDead && !enemyIsDead);
-
-            
         }
     }
 }
