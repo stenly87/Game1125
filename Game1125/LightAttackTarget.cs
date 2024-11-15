@@ -15,7 +15,6 @@ namespace Game1125
         }
         public override void Run(Creature actor, Room room)
         {
-            Console.WriteLine($"{actor.Stats.Name} выбирает действие: {Title}");
             Random rand = new Random();
             Creature target;
             if (actor is Player)

@@ -28,6 +28,7 @@ namespace Game1125
             Console.ForegroundColor = color;
             if (IsDead)
                 return;
+            Console.WriteLine($"Ваш ход!");
             Stats.PrintActions();
             Console.WriteLine($"Ваше здоровье: {Stats.CurrentHP}/{Stats.MaxHP} ");
             int.TryParse(Console.ReadLine(), out int index);

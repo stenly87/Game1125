@@ -20,7 +20,7 @@ namespace Game1125
         internal void TakeDamage(int damage)
         {
             damage -= Armor;
-            Console.WriteLine("Броня поглощает урон: -" + Armor);
+            Console.WriteLine($"Броня {Name} поглощает урон. Урон снижен до {damage}.");
             if ( (damage <= 0))
             {
                 Console.WriteLine("Урон не нанесен");

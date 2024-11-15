@@ -28,18 +28,25 @@ namespace Game1125
         public Room(Player player)
         {
             Player = player;
+            Console.WriteLine($"{player.Stats.Name} попал в комнату");
             Enemies = new List<Creature>();
             int count = random.Next(1, 4);
             for (int i = 0; i < count; i++)
                 Enemies.Add(GenerateRandomEnemy());
+            Console.WriteLine($"Его окружают враги:");
+            foreach (var  creature in Enemies)
+                Console.WriteLine($"{creature.Stats.Name}");
         }
 
         public void RunBattle()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Начинается бой!");
             int round = 1;
             bool enemyIsDead = false;
             do
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("############ ROUND " + round++);
                 Player.RandomSpeed();
                 foreach(var enemy in Enemies)
@@ -49,12 +56,18 @@ namespace Game1125
                 order.AddRange(Enemies);
                 order = order.OrderByDescending(s=>s.Stats.Speed).ToList();
                 foreach (var obj in order)
+                {
+                    if (Player.IsDead)
+                        break;
+                    if (!(obj is Player))
+                    {
+                        Console.WriteLine("...");
+                        Thread.Sleep(1000);
+                    }
                     obj.RunAction(this);
-
-                enemyIsDead = true;
-                foreach (var obj in Enemies)
-                    if (!obj.IsDead)
-                        enemyIsDead = false;
+                }
+                Console.ForegroundColor = ConsoleColor.White;
+                enemyIsDead = !Enemies.Any(s=>!s.IsDead);
             }
             while (!Player.IsDead && !enemyIsDead);
 
